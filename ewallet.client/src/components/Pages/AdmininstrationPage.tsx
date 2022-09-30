@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Header/Header";
+import Header from "../Layout/Header/Header";
 import UsersTable from "../Administration/UsersTable";
 
 const AdministrationPage = () => {

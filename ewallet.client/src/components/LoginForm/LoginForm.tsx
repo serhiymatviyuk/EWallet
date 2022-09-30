@@ -1,42 +1,41 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
-import AuthenticationService from "../../services/AuthenticationService";
+import { useDispatch } from "react-redux";
+import { authenticationActions } from "../../reducers";
 import "./LoginForm.css";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
 
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>('admin@mail.com');
+  const [password, setPassword] = useState<string>('admiN@');
 
-  const SubmitLogin = async (event: any) => {
+  const submitLogin = async (event: any) => {
     event.preventDefault();
     console.log('test');
 
-    const result = await AuthenticationService.login(email, password);
-    
-    if (!result.error) {
-      <Navigate to="/accounts" />;
-    }
+    dispatch(authenticationActions.api_requestToken({ username: email, password: password }));
   }
 
   return (
     <div className="login-block">
-      <form onSubmit={SubmitLogin}>
+      <form onSubmit={submitLogin}>
         <div className="mb-3">
           <h1 className="display-5">Login</h1>
         </div>
         <div className="mb-3">
           <label>Email</label>
-          <input type="email" className="form-control" onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" value={email} className="form-control" onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="mb-3">
           <label>Password</label>
-          <input type="password" className="form-control" onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" value={password} className="form-control" onChange={(e) => setPassword(e.target.value)} />
         </div>
+        {/*
         <div className="mb-3 form-check">
           <input type="checkbox" className="form-check-input" />
           <label className="form-check-label">Remember me</label>
         </div>
+        */}
         <div className="d-grid gap-2">
           <input type="submit" className="btn btn-primary" value="Login" />
         </div>

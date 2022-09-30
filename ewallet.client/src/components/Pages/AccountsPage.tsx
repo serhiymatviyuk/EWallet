@@ -1,6 +1,6 @@
 import React from "react";
 import AccountBlock from "../Account/AccountBlock";
-import Header from "../Header/Header";
+import Header from "../Layout/Header/Header";
 
 const AccountsPage = () => (
   <>

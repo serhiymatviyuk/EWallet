@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Header/Header";
+import Header from "../Layout/Header/Header";
 import CardBlock from "../Card/CardBlock";
 
 const CardsPage = () => (

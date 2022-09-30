@@ -1,7 +1,6 @@
 import React from "react";
-import Header from "../Header/Header";
+import Header from "../Layout/Header/Header";
 import TransactionBlock from "../Transaction/TransactionBlock";
-import "./page.css";
 
 const TransactionPage = () => (
   <>
