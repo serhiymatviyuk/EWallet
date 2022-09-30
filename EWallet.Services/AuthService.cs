@@ -2,9 +2,11 @@
 using EWallet.Common.Infrastructure;
 using EWallet.Common.Models;
 using EWallet.Domain.Entities;
+using EWallet.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -85,14 +87,20 @@ namespace EWallet.Services
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(CustomClaims.UserId, user.Id)
+                new Claim(CustomClaims.UserId, user.Id),
+                new Claim(CustomClaims.FirstName, user.FirstName),
+                new Claim(CustomClaims.LastName, user.LastName),
+                new Claim(CustomClaims.Email, user.UserName),
             };
 
-            var roles = await _userManager.GetRolesAsync(user);
-            foreach (var role in roles)
+            var isAdmin = await _userManager.IsInRoleAsync(user, nameof(UserRole.Admin));
+            if (isAdmin)
             {
-                claims.Add(new Claim(ClaimTypes.Role, role));
+                claims.Add(new Claim(CustomClaims.UserRole, nameof(UserRole.Admin)));
+            }
+            else
+            {
+                claims.Add(new Claim(CustomClaims.UserRole, nameof(UserRole.User)));
             }
 
             return claims;
