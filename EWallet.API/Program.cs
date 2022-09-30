@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using EWallet.API.Extensions;
 using EWallet.Common;
 using EWallet.Common.Constants;
@@ -25,7 +26,12 @@ var builder = WebApplication.CreateBuilder(args);
             });
     });
 
-    services.AddControllers();
+    services.AddControllers()
+        .AddJsonOptions(x =>
+        {
+            // serialize enums as strings in api responses (e.g. Role)
+            x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
 
     // App settings
     services.Configure<AppSettings>(builder.Configuration.GetSection(AppConsts.AppSettingsName));
