@@ -12,8 +12,18 @@ var builder = WebApplication.CreateBuilder(args);
 {
     // Add services to the container.
     var services = builder.Services;
-  
-    services.AddCors();
+
+    services.AddCors(options =>
+    {
+        options.AddPolicy(name: "EWalletCorsPolicy",
+            policy =>
+            {
+                policy.WithOrigins("http://localhost:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+            });
+    });
 
     services.AddControllers();
 
@@ -36,11 +46,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 {
-    app.UseCors(x => x
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true) // allow any origin
-                .AllowCredentials()); // allow credentials
+    app.UseCors("EWalletCorsPolicy");
 
     // Auth middlewares
     app.UseAuthentication();
