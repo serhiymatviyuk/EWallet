@@ -1,21 +1,45 @@
 import React from "react";
-import AccountBlock from "../Account/AccountBlock";
-import Header from "../Layout/Header/Header";
+import Table, { ColumnsType } from "antd/lib/table";
+import { IAccountModel } from "../../models";
 
-const AccountsPage = () => (
-  <>
-    <h1
-      className="display-4"
-      style={{
-        textAlign: "center",
-        marginTop: "10px",
-      }}
-    >
-      Accounts
-    </h1>
-    <AccountBlock balance={10000} type={"Currency"} />
-    <AccountBlock balance={566655} type={"Deposit"} />
-  </>
-);
+const columns: ColumnsType<IAccountModel> = [
+  {
+    title: 'Balance',
+    dataIndex: 'Balance',
+    key: 'Key',
+    render: text => <a>{text}</a>,
+  },
+  {
+    title: 'Account Type',
+    dataIndex: 'AccountType',
+    key: 'Key',
+    render: (_, { AccountType }: any) => (
+      <>
+        {AccountType?.toString()}
+      </>
+    ),
+  }
+];
+
+const mockData: IAccountModel[] = [
+  {
+    Key: '1',
+    AccountType: 'Deposit',
+    Balance: 10000
+  },
+  {
+    Key: '1',
+    AccountType: 'Credit',
+    Balance: 25000
+  }
+];
+
+const AccountsPage = () => {
+  return (
+    <div style={{ padding: '20px' }}>
+      <Table columns={columns} dataSource={mockData} />
+    </div>
+  )
+};
 
 export default AccountsPage;
