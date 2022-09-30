@@ -1,0 +1,74 @@
+@import '../../components/_mixins';
+
+.menu__ITEMS {
+    display: inline-flex;
+    height: 38px;
+    margin: 0;
+    padding: 0;
+    padding-left: 100px;
+
+    li {
+        margin: 0;
+        padding: 0;
+
+        a {
+            position: relative;
+            color: #444;
+
+            &:hover {
+                color: #444;
+            }
+
+            &.isActive,
+            &:hover {
+                color: #444;
+
+                &:before {
+                    content: '';
+                    @include position_absolute(auto,0,-4px,0);
+                    height: 2px;
+                    background-color: #444;
+                }
+            }
+
+            &:hover {
+                &:before {
+                    background-color: #ccc;
+                }
+            }
+        }
+    }
+}
+
+.control__CONTENT {
+    @include position_absolute(0,0,auto,auto,2);
+    padding-right: 10px;
+    background-color: #fdfcfc;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logOut__MenuItem {
+        background-color: #f1f1f1;
+
+        span {
+            svg {
+                margin-top: -6px;
+            }
+        }
+    }
+}
+
+.component__PANEL {
+    .ms-Panel-main {
+        right: 20px;
+        bottom: 20px;
+        top: 20px;
+        border-radius: 10px;
+    }
+
+    .ms-Overlay {
+        background-color: rgba(#000,.4);
+    }
+}

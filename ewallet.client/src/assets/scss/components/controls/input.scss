@@ -1,0 +1,281 @@
+@import '../_mixins';
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+.input__CONTROL,
+.button__CONTROL {
+    min-height: 40px;
+    position: relative;
+
+    &.full_w {
+        width: 100%;
+    }
+
+    &.m_10 {
+        margin-bottom: 10px;
+    }
+
+
+    label.input__TITLE {
+        font-weight: 400;
+        padding-bottom: 4px;
+        display: block;
+        //
+        color: #475F7B;
+        text-transform: uppercase;
+    }
+
+    input.input__DEFAULT {
+        width: 100%;
+        height: 40px;
+        display: block;
+        padding: .5rem .75rem;
+        font-size: .875rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #4b4b5a;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #e2e7f1;
+        border: 1px solid #ced4da;
+        //border-radius: .3rem;
+        transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+
+        &:focus {
+            color: #4b4b5a;
+            background-color: #fff;
+            border-color: #5369f8;
+            outline: 0;
+            box-shadow: none;
+        }
+    }
+
+    .required_field {
+        @include position_absolute(14px, auto, auto, calc(100% + 4px));
+        color: red;
+        font-weight: 700;
+    }
+}
+
+.form_control {
+    display: block;
+    width: 100%;
+    padding: 7.5px 17px 9px;
+    box-shadow: none !important;
+
+    &.ant-picker:hover,
+    &.ant-picker-focused {
+        border-right-width: 2px !important;
+    }
+
+    .icon__PICKER {
+        padding-right: 20px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.ant-picker-panel-container {
+    font-family: $font_Montserrat;
+}
+
+.input__CONTROL {
+
+    .ant-input+div:not(.required_field),
+    .ant-picker+div:not(.required_field) {
+        font: {
+            family: $font_DEFAULT;
+            weight: 600;
+            size: 10px;
+        }
+
+        text-transform: uppercase;
+        color: red;
+        @include position_absolute(calc(0% + 4px), 0, auto, auto);
+    }
+}
+
+.component__SignIn_VIEW,
+.component__UserManagment__VIEW,
+.component__Modal__VIEW,
+.component__EditTast__rVIEW {
+
+    .input__CONTROL {
+        .input__TITLE {
+            font-family: $font_Montserrat;
+            font-size: 10px;
+            padding-bottom: 6px;
+            font-weight: 800;
+            color: #222;
+        }
+
+        .form_control {
+            height: 44px;
+            font-weight: 400;
+            font-family: $font_Montserrat;
+            font-size: 14px;
+            background-color: #fff;
+
+            border: {
+                width: 2px;
+                color: #222;
+            }
+
+            transition: all 180ms linear;
+            color: #222;
+        }
+    }
+
+    .button__CONTROL {
+
+        .button__SUBMIT {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 270px;
+            height: 70px;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+            font-family: $font_Montserrat;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: black;
+            border: 2px solid #111;
+            cursor: pointer;
+            transition: ease-in-out 0.15s;
+            padding: 0 40px;
+
+            &:hover {
+                color: white;
+                background: black;
+                box-shadow: 0px 19px 57px 0 rgba(0, 0, 0, 0.95);
+            }
+        }
+
+        .pull__RIGHT {
+            @include position_absolute(0, 0, 0, auto);
+        }
+    }
+}
+
+.component__SignIn_VIEW {
+    .input__CONTROL {
+        margin-bottom: 16px;
+    }
+
+    .form_valMessage {
+        font-family: $font_DEFAULT;
+        font-size: 11px;
+        color: red;
+        font-weight: 500;
+    }
+
+    .form_SubmitMessage {
+        font-family: $font_DEFAULT;
+        font-size: 11px;
+        color: red;
+        font-weight: 500;
+        width: 100%;
+        text-align: center;
+        margin-top: 4px;
+
+        &.success {
+            color: green;
+        }
+    }
+}
+
+.user_profile__COMPONENT {
+    .input__CONTROL {
+
+        .form_control {
+            height: 58px;
+        }
+    }
+}
+
+.input__CONTROL {
+    position: relative;
+
+    label.input__FILES {
+
+        /*span {
+            width: 100%;
+            text-align: center;
+            font-family: $font_Montserrat;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+        }*/
+        input {
+            @include position_absolute(-100vh, auto, auto, -100vw, -99);
+            display: none;
+        }
+
+        &:hover {
+            background-color: rgb(243, 242, 241);
+            cursor: pointer;
+            border-color: #73c16f;
+            border-style: solid;
+        }
+    }
+
+    .imagePreview__CONTAINER {
+        max-width: 100%;
+        padding-top: 20px;
+        border: 2px dashed #222;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .removePreview__CONTROL {
+        color: red;
+        text-transform: uppercase;
+        font-family: $font_Montserrat;
+        font-size: 10px;
+        padding-top: 6px;
+        font-weight: 800;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+}
+
+.component__AutoComplete {
+    &.full {
+        width: 100%;
+    }
+}
+
+.component__AutoComplete_controls,
+.update__ChangeFile_container {
+    width: 100%;
+    min-height: 32px;
+    margin-top: 10px;
+
+    .ant-btn {
+        margin-left: 10px;
+    }
+
+    .pull__RIGHT {
+        float: right;
+    }
+}
+
+.update__ChangeFile_container {
+    border-top: 1px solid #ececec;
+    padding-top: 10px;
+}
