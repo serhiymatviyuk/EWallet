@@ -1,9 +1,37 @@
 import React, { useEffect, useState } from "react";
-import CardBlock from "../Card/CardBlock";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState, IUserCardsState, userCardsActions } from "../../reducers";
+import { IApplicationState, userCardsActions } from "../../reducers";
 import { CardModel } from "../../models";
-import NoCardBlock from "../Card/NoCardsBlock";
+import Table, { ColumnsType } from "antd/lib/table";
+
+const columns: ColumnsType<CardModel> = [
+  {
+    title: 'Card Number',
+    dataIndex: 'CardNumber',
+    key: 'CardNumber',
+    render: text => <a>{text}</a>,
+  },
+  {
+    title: 'Valid',
+    dataIndex: 'IsValid',
+    key: 'IsValid',
+    render: (_, { valid }: any) => (
+      <>
+        {valid?.toString()}
+      </>
+    ),
+  },
+  {
+    title: 'State',
+    dataIndex: 'State',
+    key: 'State',
+  },
+  {
+    title: 'Type',
+    dataIndex: 'Type',
+    key: 'Type',
+  }
+];
 
 const CardsPage = () => {
   const dispatch = useDispatch();
@@ -15,29 +43,12 @@ const CardsPage = () => {
 
   return (
     <>
-      <h1
-        className="display-4"
-        style={{
-          textAlign: "center",
-          marginTop: "10px",
-        }}
-      >
-        Cards
-      </h1>
-
-      {cards?.length
-        ? cards.map(x => (
-          <CardBlock
-            cardNumber={x.CardNumber}
-            valid={x.IsValid}
-            state={x.State}
-            type={x.Type}
-          />
-        ))
-        : <NoCardBlock />
-      }
+      <div style={{ padding: '20px' }}>
+        <Table columns={columns} dataSource={cards} />
+      </div>
     </>
   )
 };
 
 export default CardsPage;
+
