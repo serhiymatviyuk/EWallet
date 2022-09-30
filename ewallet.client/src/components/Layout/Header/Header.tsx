@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import "./Header.css";
 import UserBlock from "./UserBlock";
 import * as routes from "../../../constants/routes.constants";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
-import { IApplicationState } from "../../../reducers";
 import { globalActions } from "../../../reducers/globals.slice";
 import { UserRole } from "../../../models/enums";
 import { useAuth } from "../../../hooks/useAuth";
@@ -21,9 +20,6 @@ const Header = () => {
 
   const { role, email, firstName, lastName } = useAuth();
 
-
-  const selectedMenuItemUrl = useSelector<IApplicationState, string>((state) => state.global.isSelectedUrl)
-
   const adminMenu = [
     { route: routes.ADMIN_USERS_URI, onClick: () => dispatch(globalActions.selectUrl(routes.ADMIN_USERS_URI)), name: "Users management" },
   ]
@@ -35,20 +31,15 @@ const Header = () => {
     { route: routes.USER_PROFILE_URI, onClick: () => dispatch(globalActions.selectUrl(routes.USER_TRANSACTIONS_URI)), name: "Profile" },
   ]
 
-  const getMenuItemClasses = (menuItem: any): string => {
-    return selectedMenuItemUrl && selectedMenuItemUrl.indexOf(menuItem.route) !== -1 ? 'nav-link' : 'nav-link active'
-  }
-
   const buildMenuByUserRole = (menuItems: Array<any>) => {
     return menuItems.map((menuItem, index) =>
-      <li>
+      <li key={index} >
         <NavLink activeClassName="isActive" className={'nav-link'} to={`${menuItem.route}`}>{menuItem.name}</NavLink>
       </li>
     );
   }
 
   const renderMenuItems = (role: string) => {
-    console.log(role);
 
     let menuItems = [...userMenu];
 

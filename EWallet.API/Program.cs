@@ -7,8 +7,6 @@ using EWallet.Database;
 using EWallet.Services;
 using Microsoft.EntityFrameworkCore;
 
-var devCorsPolicy = "devCorsPolicy";
-
 var builder = WebApplication.CreateBuilder(args);
 {
     // Add services to the container.

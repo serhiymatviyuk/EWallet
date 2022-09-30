@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../Layout/Header/Header";
 import UserManagementBlock from "../UserManagement/UserManagementBlock";
 
 type UserManagementPageProps = {
@@ -10,9 +9,6 @@ type UserManagementPageProps = {
 const UserManagementPage = (props: UserManagementPageProps) => {
   return (
     <div>
-      <div>
-        <Header />
-      </div>
       <div className="jumbotron">
         <h1
           className="display-4"
