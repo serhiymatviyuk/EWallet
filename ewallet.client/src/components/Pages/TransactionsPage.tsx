@@ -1,46 +1,69 @@
 import React from "react";
-import Header from "../Layout/Header/Header";
-import TransactionBlock from "../Transaction/TransactionBlock";
+import { Table } from "antd";
+import { ColumnsType } from "antd/lib/table";
+import { ITransactionModel } from "../../models";
 
-const TransactionPage = () => (
-  <>
-    <div className="page">
-      <h1
-        className="display-4"
-        style={{
-          textAlign: "center",
-          marginTop: "10px",
-        }}
-      >
-        Transactions
-      </h1>
-    </div>
-    <div className="container">
-      <div className="box">
-        <TransactionBlock
-          date={"09-28-2022"}
-          ammount={1146}
-          type={true}
-          cardNumber={"1234 56** **** **89"}
-          vendor={"Vise"}
-        />
-        <TransactionBlock
-          date={"08-31-2022"}
-          ammount={10340}
-          type={false}
-          cardNumber={"1234 56** **** **89"}
-          vendor={"Vise"}
-        />
-        <TransactionBlock
-          date={"09-04-2021"}
-          ammount={10000}
-          type={true}
-          cardNumber={"1234 56** **** **89"}
-          vendor={"Vise"}
-        />
+const columns: ColumnsType<ITransactionModel> = [
+  {
+    title: 'Card Number',
+    dataIndex: 'CardNumber',
+    key: 'Key',
+    render: (_, { CardNumber }: any) => (<a>{CardNumber}</a>),
+  },
+  {
+    title: 'Date',
+    dataIndex: 'Date',
+    key: 'Key',
+    render: (_, { Date }: any) => (Date?.toLocaleDateString('en-US')),
+  },
+  {
+    title: 'Amount',
+    dataIndex: 'Amount',
+    key: 'Key',
+    render: (_, { Amount }: any) => (Amount?.toString()),
+  },
+
+  {
+    title: 'Vendor',
+    dataIndex: 'VendorName',
+    key: 'Key',
+    render: (_, { VendorName }: any) => (VendorName),
+  },
+  {
+    title: 'Address',
+    dataIndex: 'VendorAddress',
+    key: 'Key',
+    render: (_, { VendorAddress }: any) => (VendorAddress),
+  },
+  {
+    title: 'Contacts',
+    dataIndex: 'VendorContacts',
+    key: 'Key',
+    render: (_, { VendorContacts }: any) => (VendorContacts),
+  }
+];
+
+const mockData: ITransactionModel[] = [
+  {
+    Key: '1',
+    Date: new Date('09/28/2022'),
+    Amount: 1146,
+    CardNumber: '4444555566667777',
+
+    VendorName: 'UFSC',
+    VendorAddress: 'Evergreen, Alabama(AL), 36401',
+    VendorContacts: '(920) 592-6065'
+  },
+];
+
+const TransactionPage = () => {
+  return (
+    <>
+      <div style={{ padding: '20px' }}>
+        <Table columns={columns} dataSource={mockData} />
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 export default TransactionPage;
