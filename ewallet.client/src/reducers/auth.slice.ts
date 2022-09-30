@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { LoginModel } from '../models';
 import { UserRole } from '../models/enums/UserRole';
+import { deleteCookie } from '../utils';
 
 export interface IAuthState {
     fetching: boolean;
@@ -54,6 +55,8 @@ const authenticationSlice = createSlice({
             });
         },
         logoutSuccess(state) {
+            deleteCookie('token');
+
             return DefaultAuthState;
         },
     }
