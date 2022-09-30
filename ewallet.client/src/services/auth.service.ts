@@ -6,7 +6,6 @@ import { catchError, map, switchMap } from "rxjs/operators"
 import API from "../constants/api.constants"
 import { ErrorHandler } from "../helpers/errorHandler"
 import storeProvider from "../helpers/store.provider"
-import { UserRole } from "../models/enums"
 import { authenticationActions, IAuthState } from "../reducers"
 import { setCookie, TokenParser } from "../utils"
 

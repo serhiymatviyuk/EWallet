@@ -1,7 +1,6 @@
 import { Button } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { authenticationActions } from "../../reducers";
 import "./LoginForm.css";
 
@@ -13,8 +12,6 @@ const LoginForm = () => {
 
     const submitLogin = async (event: any) => {
         event.preventDefault();
-        console.log('test');
-
         dispatch(authenticationActions.api_requestToken({ username: email, password: password }));
     }
 
