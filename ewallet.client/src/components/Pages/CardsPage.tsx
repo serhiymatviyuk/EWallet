@@ -15,9 +15,9 @@ const columns: ColumnsType<CardModel> = [
     title: 'Valid',
     dataIndex: 'IsValid',
     key: 'IsValid',
-    render: (_, { valid }: any) => (
+    render: (_, { IsValid }: any) => (
       <>
-        {valid?.toString()}
+        {IsValid?.toString()}
       </>
     ),
   },
