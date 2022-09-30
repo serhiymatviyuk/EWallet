@@ -18,6 +18,8 @@ import { TokenParser } from './utils/token.utils';
 import { getCookie } from './utils/cookie.utils';
 import RouterRoot from './components/Routings/RouterRoot';
 import storeProvider from './helpers/store.provider';
+import './assets/scss/main.scss';
+import 'antd/dist/antd.css';
 
 export function AppInit(store: Store<any>) {
   const token: string = getCookie('token');

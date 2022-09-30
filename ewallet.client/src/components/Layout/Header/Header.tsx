@@ -10,7 +10,7 @@ import { UserRole } from "../../../models/enums";
 import { useAuth } from "../../../hooks/useAuth";
 
 const Header = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const history = useHistory();
 
   const uriParams = history.location.pathname;
@@ -20,6 +20,7 @@ const Header = () => {
   }, [uriParams]);
 
   const { role, email, firstName, lastName } = useAuth();
+
 
   const selectedMenuItemUrl = useSelector<IApplicationState, string>((state) => state.global.isSelectedUrl)
 
@@ -40,13 +41,15 @@ const Header = () => {
 
   const buildMenuByUserRole = (menuItems: Array<any>) => {
     return menuItems.map((menuItem, index) =>
-      <li className={getMenuItemClasses(menuItem)} key={`menu-item-${index}`}>
-        <NavLink className={'nav-link'} to={`${menuItem.route}`}>{menuItem.name}</NavLink>
+      <li>
+        <NavLink activeClassName="isActive" className={'nav-link'} to={`${menuItem.route}`}>{menuItem.name}</NavLink>
       </li>
     );
   }
 
   const renderMenuItems = (role: string) => {
+    console.log(role);
+
     let menuItems = [...userMenu];
 
     switch (role) {
@@ -65,31 +68,27 @@ const Header = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-sm bg-primary navbar-dark">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/accounts">
-            Account Management System
+      <div className="header_PAGE">
+        <div className="header__LOGO">
+          <a className="i__LOGO" href="/accounts">
+            Account Management <b>System</b>
           </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Переключатель навигации"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
-              {renderMenuItems(role)}
 
-              <UserBlock userName={`${firstName} ${lastName}`} email={email} />
-            </ul>
+          <div>
+            <span>{email && email}</span>
+            <br />
+            {`${firstName && firstName} ${lastName && lastName}`}
           </div>
         </div>
-      </nav>
+
+        <ul className="menu__ITEMS">
+          {renderMenuItems(role)}
+        </ul>
+
+        <div className="control__CONTENT">
+          <UserBlock userName={`${firstName} ${lastName}`} email={email} />
+        </div>
+      </div>
     </>
   );
 };
