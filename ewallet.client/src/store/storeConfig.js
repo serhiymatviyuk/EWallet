@@ -32,7 +32,6 @@ function constructStore(history, preloadedState) {
             store.replaceReducer(nextRootReducer);
         })
     }
-    console.log(store);
     epicMiddleware.run(epics);
 
     return store;

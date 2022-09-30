@@ -1,23 +1,22 @@
 import React from "react";
+import { CardState, CardType } from "../../models/enums";
 import "./CardBlock.css";
 
 type CardBlockProps = {
   cardNumber: string,
   valid: boolean,
-  state: string,
-  type: string,
+  state?: CardState,
+  type?: CardType,
 };
 
 const CardBlock = (props: CardBlockProps) => {
-  function setStateColor(state: string) {
+  function setStateColor(state?: string) {
     if (state === "Expired") return "red";
     if (state === "Active") return "green";
     else return "gray";
   }
 
   const stateColor = setStateColor(props.state);
-  debugger;
-
   return (
     <div className="account-block">
       <div className="container">

@@ -5,7 +5,6 @@ import TransactionBlock from "../Transaction/TransactionBlock";
 const TransactionPage = () => (
   <>
     <div className="page">
-      <Header />
       <h1
         className="display-4"
         style={{

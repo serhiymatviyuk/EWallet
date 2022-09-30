@@ -11,7 +11,6 @@ const LoginForm = () => {
 
   const submitLogin = async (event: any) => {
     event.preventDefault();
-    console.log('test');
 
     dispatch(authenticationActions.api_requestToken({ username: email, password: password }));
   }
@@ -30,12 +29,6 @@ const LoginForm = () => {
           <label>Password</label>
           <input type="password" value={password} className="form-control" onChange={(e) => setPassword(e.target.value)} />
         </div>
-        {/*
-        <div className="mb-3 form-check">
-          <input type="checkbox" className="form-check-input" />
-          <label className="form-check-label">Remember me</label>
-        </div>
-        */}
         <div className="d-grid gap-2">
           <input type="submit" className="btn btn-primary" value="Login" />
         </div>

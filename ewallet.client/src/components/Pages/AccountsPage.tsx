@@ -4,7 +4,6 @@ import Header from "../Layout/Header/Header";
 
 const AccountsPage = () => (
   <>
-    <Header />
     <h1
       className="display-4"
       style={{

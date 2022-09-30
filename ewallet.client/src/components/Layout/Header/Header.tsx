@@ -10,7 +10,7 @@ import { UserRole } from "../../../models/enums";
 import { useAuth } from "../../../hooks/useAuth";
 
 const Header = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const uriParams = history.location.pathname;
@@ -47,8 +47,6 @@ const Header = () => {
   }
 
   const renderMenuItems = (role: string) => {
-    console.log(role);
-
     let menuItems = [...userMenu];
 
     switch (role) {

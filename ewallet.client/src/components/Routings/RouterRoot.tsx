@@ -13,7 +13,6 @@ interface IRouting {
 const RouterRoot = (props: IRouting) => {
 
     const { isAuthorized } = useAuth();
-    console.log(isAuthorized);
 
     if (isAuthorized) {
         return (
@@ -24,8 +23,6 @@ const RouterRoot = (props: IRouting) => {
                     authenticated={isAuthorized}
                     component={MasterPageView}
                 />
-                {/* TODO: should be not found */}
-                {/* <Redirect from="*" to="/" /> */}
             </Switch>
         )
     }

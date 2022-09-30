@@ -31,12 +31,14 @@ export function AppInit(store: Store<any>) {
 
     store.dispatch(
       authenticationActions.requestTokenSuccess({
-        name: parsedToken.UserName,
-        email: parsedToken.Email,
-        netUid: parsedToken.NetUid,
-        role: parsedToken.role,
+        fetching: false,
+        isAuthorized: true,
+        firstName: parsedToken['first_name'],
+        lastName: parsedToken['last_name'],
+        email: parsedToken['email'],
+        role: parsedToken['user_role'],
         token: token,
-        expires: parsedToken.exp * 1000,
+        expires: parsedToken.exp * 1000
       })
     )
   } else {

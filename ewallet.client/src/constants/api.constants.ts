@@ -14,6 +14,20 @@ export class API {
         UPDATE_USER_CARD: API.API_PART + 'cards',
         DELETE_USER_CARD: API.API_PART + 'cards',
     }
+
+    public static readonly UserAccountsEndPoints: any = {
+        GET_USER_CARDS: API.API_PART + 'accounts',
+        CREATE_USER_CARD: API.API_PART + 'accounts',
+        UPDATE_USER_CARD: API.API_PART + 'accounts',
+        DELETE_USER_CARD: API.API_PART + 'accounts',
+    }
+
+    public static readonly UserTransactionsEndPoints: any = {
+        GET_USER_CARDS: API.API_PART + 'accounts',
+        CREATE_USER_CARD: API.API_PART + 'accounts',
+        UPDATE_USER_CARD: API.API_PART + 'accounts',
+        DELETE_USER_CARD: API.API_PART + 'accounts',
+    }
 }
 
 export default API;

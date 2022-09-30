@@ -1,38 +1,43 @@
-import React from "react";
-import Header from "../Layout/Header/Header";
+import React, { useEffect, useState } from "react";
 import CardBlock from "../Card/CardBlock";
+import { useDispatch, useSelector } from "react-redux";
+import { IApplicationState, IUserCardsState, userCardsActions } from "../../reducers";
+import { CardModel } from "../../models";
+import NoCardBlock from "../Card/NoCardsBlock";
 
-const CardsPage = () => (
-  <>
-    <Header />
-    <h1
-      className="display-4"
-      style={{
-        textAlign: "center",
-        marginTop: "10px",
-      }}
-    >
-      Cards
-    </h1>
-    <CardBlock
-      cardNumber={"1234 56** **** **78"}
-      valid={true}
-      state={"Active"}
-      type={"Currency USD"}
-    />
-    <CardBlock
-      cardNumber={"1000 50** **** **08"}
-      valid={false}
-      state={"Inactive"}
-      type={"Currency EUR"}
-    />
-    <CardBlock
-      cardNumber={"9870 65** **** **43"}
-      valid={false}
-      state={"Expired"}
-      type={"Credit"}
-    />
-  </>
-);
+const CardsPage = () => {
+  const dispatch = useDispatch();
+  const cards = useSelector<IApplicationState, CardModel[]>((state) => state.userCards.userCards);
+
+  useEffect(() => {
+    dispatch(userCardsActions.apiGetUserCards());
+  }, []);
+
+  return (
+    <>
+      <h1
+        className="display-4"
+        style={{
+          textAlign: "center",
+          marginTop: "10px",
+        }}
+      >
+        Cards
+      </h1>
+
+      {cards?.length
+        ? cards.map(x => (
+          <CardBlock
+            cardNumber={x.CardNumber}
+            valid={x.IsValid}
+            state={x.State}
+            type={x.Type}
+          />
+        ))
+        : <NoCardBlock />
+      }
+    </>
+  )
+};
 
 export default CardsPage;
